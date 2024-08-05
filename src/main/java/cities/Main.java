@@ -5,21 +5,21 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws SQLException {
 
-        CityDAO studentDAO = new CityDAO();
+        CityDAO cityDAO = new CityDAO();
 
         System.out.println("Add new city");
         City newCity = new City(7,"Warsaw", 1700000, "Poland");
-        studentDAO.addCity(newCity);
+        cityDAO.addCity(newCity);
 
         System.out.println("Update city");
-        City updatedStudent = new City(1, "Minsk", 1, "Belarus");
-        studentDAO.updateCity(updatedStudent);
+        City updatedStudent = new City(1, "Minsk", 100, "Belarus");
+        cityDAO.updateCity(updatedStudent);
 
         System.out.println("Delete city");
-        studentDAO.deleteCity(2);
+        cityDAO.deleteCity(7);
 
         System.out.println("Show all cities");
-        List<City> allStudents = studentDAO.getAllCities();
-        allStudents.forEach(System.out::println);
+        List<City> allCities = cityDAO.getAllCities();
+        allCities.forEach(System.out::println);
     }
 }

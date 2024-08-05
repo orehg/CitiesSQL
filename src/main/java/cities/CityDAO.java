@@ -9,12 +9,13 @@ import java.util.List;
 
 public class CityDAO {
     public void addCity(City city) {
-        String query = "INSERT INTO cities (name, population, location) VALUES (?, ?, ?)";
+        String query = "INSERT INTO cities (id, name, population, location) VALUES (?, ?, ?, ?)";
         try (Connection connection = DatabaseHelper.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setString(1, city.getName());
-            statement.setInt(2, city.getPopulation());
-            statement.setString(3, city.getLocation());
+            statement.setLong(1, city.getId());
+            statement.setString(2, city.getName());
+            statement.setInt(3, city.getPopulation());
+            statement.setString(4, city.getLocation());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -35,11 +36,11 @@ public class CityDAO {
         }
     }
 
-    public void deleteCity(int studentId) {
+    public void deleteCity(int cityId) {
         String query = "DELETE FROM cities WHERE id = ?";
         try (Connection connection = DatabaseHelper.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, studentId);
+            statement.setInt(1, cityId);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
